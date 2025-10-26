@@ -27,10 +27,23 @@
       text-align: center;
     }
 
-    p.description {
+    .description {
       font-size: 1.1rem;
-      line-height: 1.6;
+      line-height: 1.7;
       margin-top: 1.5rem;
+    }
+
+    .description p {
+      margin-bottom: 1.2rem;
+    }
+
+    ol {
+      margin: 1.2rem 0 1.2rem 2rem;
+      padding: 0;
+    }
+
+    ol li {
+      margin-bottom: 1rem;
     }
 
     .gallery {
@@ -91,35 +104,45 @@
   <div class="container">
     <h1>Repurposed 3D Printer</h1>
 
-    <p class="description">
-      This project repurposes a 3D printer into an automated drawing and plotting machine.
-      The printer’s tool head has been replaced with a custom made rotating pen holder that
-      switches between CMYK colors to draw detailed images. This switching is done through
-      the repurposing of the original printers filiment extruder motor. <br><br>
-      
-      The machine runs on custom made G-Code that is generated from an original input image.
-      This image is loaded into a custom python script that then generates G-Code through 
-      a couple of image processing steps that are detailed below. <br><br>
-      
-      1) Images are converted into a 600x600 matrix, with each cell containg the CMYK value of the corresponding pixel <br>
-      2) These cell values are then simplified and the values are converted from unique CMYK color values to a single digit (0-3)
-         that represents the most promenent CMYK color in that cell. When white is the most prominent, the cell is left blank <br>
-      3) This new simplified matrix is then scaled down from 600x600 to 100x100. To do this cells are grouped into 6x6 bloacks
-         these blocks are averaged, and the most prominent CMYK color digit is entered into the 100x100 matrix cell that represents
-         this block.<br>
-      4) Now that there is a 100x100 matrix representation of the initial image with single digit numbers representing the color
-         value of grouped together pixels, machine code (G-Code) is now made.<br>
-      5) The python script loops through each cell in the matrix, and creates G-Code that moves the modified tool head to the physical
-         location that the matrix cell represents. The tool head then lowers and creates a small dot of the specified color. <br>
-      6) This process is done one color at a time and when the G-Code of a specific color has been generated, a command is then written 
-         to the extruder motor to rotate ninty degrees, allowing the next color to be used. <br>
-      7) This process is repeated for all four colors, with white space being skipped by the pens. <br>
-      8) This G-Code is then saved to a micro SD card that is loaded into the printer and the physical drawing is created by the printer <br>
+    <div class="description">
+      <p>
+        This project repurposes a 3D printer into an automated drawing and plotting machine.
+        The printer’s tool head has been replaced with a custom made rotating pen holder that
+        switches between CMYK colors to draw detailed images. This switching is done through
+        the repurposing of the original printers filiment extruder motor.
+      </p>
 
-      The image procesing and G-Code can be found in the files below the example images
-      
-      lines with exact precision.
-    </p>
+      <p>
+        The machine runs on custom made G-Code that is generated from an original input image.
+        This image is loaded into a custom python script that then generates G-Code through 
+        a couple of image processing steps that are detailed below.
+      </p>
+
+      <ol>
+        <li>Images are converted into a 600x600 matrix, with each cell containg the CMYK value of the corresponding pixel</li>
+        <li>These cell values are then simplified and the values are converted from unique CMYK color values to a single digit (0-3)
+          that represents the most promenent CMYK color in that cell. When white is the most prominent, the cell is left blank</li>
+        <li>This new simplified matrix is then scaled down from 600x600 to 100x100. To do this cells are grouped into 6x6 bloacks
+          these blocks are averaged, and the most prominent CMYK color digit is entered into the 100x100 matrix cell that represents
+          this block.</li>
+        <li>Now that there is a 100x100 matrix representation of the initial image with single digit numbers representing the color
+          value of grouped together pixels, machine code (G-Code) is now made.</li>
+        <li>The python script loops through each cell in the matrix, and creates G-Code that moves the modified tool head to the physical
+          location that the matrix cell represents. The tool head then lowers and creates a small dot of the specified color.</li>
+        <li>This process is done one color at a time and when the G-Code of a specific color has been generated, a command is then written 
+          to the extruder motor to rotate ninty degrees, allowing the next color to be used.</li>
+        <li>This process is repeated for all four colors, with white space being skipped by the pens.</li>
+        <li>This G-Code is then saved to a micro SD card that is loaded into the printer and the physical drawing is created by the printer</li>
+      </ol>
+
+      <p>
+        The image procesing and G-Code can be found in the files below the example images.
+      </p>
+
+      <p>
+        lines with exact precision.
+      </p>
+    </div>
 
     <div class="gallery">
       <img src="images/PrinterWithToolHead.JPG" alt="Printer with Tool Head">
@@ -135,4 +158,3 @@
   </div>
 </body>
 </html>
-
