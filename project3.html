@@ -63,13 +63,35 @@
     a.back-link:hover {
       text-decoration: underline;
     }
+
+    /* === Sensor Section Styling === */
+    .sensor-flex {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .sensor-flex ul {
+      flex: 1 1 300px;
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+
+    .sensor-image {
+      flex: 1 1 300px;
+      max-width: 350px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Autonomous Ground Vehicle</h1>
 
-    <img src="images/robot1.PNG" alt="Screenshot of Project 1" width="500">
+    <img src="images/Ros2.Still.PNG" alt="Screenshot of Project 1" width="500">
 
     <div class="section">
       <h2>Overview</h2>
@@ -77,25 +99,29 @@
       <p>My responsibilities included leading the development of the electronics and software stack, working in C, C++, ROS2, and Linux. I was also heavily involved in testing, debugging, and system validation.</p>
     </div>
 
-    <div class="section">
+    <div class="section sensors-section">
       <h2>Integration Components:</h2>
-      <ul>
-        <li>Nvidia Jetson Orin Nano</li>
-        <li>Teensy 4.0</li>
-        <li>Teknic ClearPath motors (4 48V motors)</li>
-        <li>Custom motor feedback boards</li>
-        <li>Zed2 Stereo Camera</li>
-        <li>Oak-D Stereo Camera</li>
-        <li>Hokuyo UTM-30LX Lidar</li>
-        <li>9-DOF IMU</li>
-        <li>Varying step-down converters</li>
-      </ul>
+      <div class="sensor-flex">
+        <ul>
+          <li>Nvidia Jetson Orin Nano</li>
+          <li>Teensy 4.0</li>
+          <li>Teknic ClearPath motors (4 × 48V motors)</li>
+          <li>Custom motor feedback boards</li>
+          <li>Zed2 Stereo Camera</li>
+          <li>Oak-D Stereo Camera</li>
+          <li>Hokuyo UTM-30LX Lidar</li>
+          <li>9-DOF IMU</li>
+          <li>Varying step-down converters</li>
+        </ul>
+
+        <img src="images/WiringDiagram.PNG" alt="Sensors diagram" class="sensor-image">
+      </div>
     </div>
 
     <p>Watch a demonstration video below:</p>
 
     <!-- Embedded MP4 video -->
-    <video controls>
+    <video controls muted>
       <source src="images/OffRoad.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
