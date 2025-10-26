@@ -42,12 +42,12 @@
       margin-bottom: 1rem;
     }
 
-    iframe {
+    video {
       display: block;
       width: 100%;
-      height: 600px;
-      border: none;
-      margin-top: 1.5rem;
+      max-width: 640px;
+      height: auto;
+      margin: 1.5rem auto;
       border-radius: 6px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
@@ -71,35 +71,34 @@
 
     <img src="images/robot1.PNG" alt="Screenshot of Project 1" width="500">
 
- <div class="section">
-  <h2>Overview</h2>
-  <p>This project was completed as part of my 2025 senior design capstone. The goal was to design and build a fully autonomous ground vehicle using the Robot Operating System 2 (ROS2).</p>
-  <p>My responsibilities included leading the development of the electronics and software stack, working in C, C++, ROS2, and Linux. I was also heavily involved in testing, debugging, and system validation.</p>
-</div>
+    <div class="section">
+      <h2>Overview</h2>
+      <p>This project was completed as part of my 2025 senior design capstone. The goal was to design and build a fully autonomous ground vehicle using the Robot Operating System 2 (ROS2).</p>
+      <p>My responsibilities included leading the development of the electronics and software stack, working in C, C++, ROS2, and Linux. I was also heavily involved in testing, debugging, and system validation.</p>
+    </div>
 
     <div class="section">
       <h2>Integration Components:</h2>
       <ul>
-        <li>Nvidia Jetson  Orin Nano</li>
+        <li>Nvidia Jetson Orin Nano</li>
         <li>Teensy 4.0</li>
-        <li>Teknic clear path motors (4 48V motors) </li>
+        <li>Teknic ClearPath motors (4 48V motors)</li>
         <li>Custom motor feedback boards</li>
-        <li>Zed2 Stero Camera</li>
+        <li>Zed2 Stereo Camera</li>
         <li>Oak-D Stereo Camera</li>
         <li>Hokuyo UTM-30LX Lidar</li>
-        <li>9-DOF imu</li>
-        <li>Varriying step down converters</li>
+        <li>9-DOF IMU</li>
+        <li>Varying step-down converters</li>
       </ul>
     </div>
 
-    <p>A detailed technical report is provided below for further information.</p>
+    <p>Watch a demonstration video below:</p>
 
-    
-    <!-- Embedded PDF -->
-    <iframe 
-      src="C:\Users\fried\OneDrive\Documents\WebSite\capstoneReport.pdf"
-      aria-label="Project 1 Report PDF"
-    ></iframe>
+    <!-- Embedded MP4 video -->
+    <video controls>
+      <source src="images/OffRoad.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
 
     <a class="back-link" href="index.html">← Back to Home</a>
   </div>
