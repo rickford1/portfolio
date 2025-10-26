@@ -27,12 +27,24 @@
       color: #2c3e50;
     }
 
-    img {
-      max-width: 100%;
+    .gallery {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .gallery img {
+      width: 250px; /* Adjust width as needed */
       height: auto;
-      margin-top: 1rem;
       border: 1px solid #ccc;
       border-radius: 6px;
+      transition: transform 0.2s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
     }
 
     a {
@@ -51,11 +63,14 @@
 <body>
   <div class="container">
     <h1>Repurposed 3D Printer</h1>
-    <p>This is my first project. Below is an image of it:</p>
+    <p>This is my first project. Below are images of it:</p>
 
-    <img src="images/squares.JPG" alt="Screenshot of Project 1" width="500">
+    <div class="gallery">
+      <img src="PrinterWithToolHead.JPG" alt="Project Image 1">
+      <img src="PrinterNoToolHead.JPG" alt="Project Image 2">
+      <img src="PrintedImage.JPG" alt="Project Image 3">
+    </div>
 
-    <br><br>
     <a href="index.html">← Back to Home</a>
   </div>
 </body>
