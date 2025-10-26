@@ -1,12 +1,4 @@
-'''Written and designed by Rick Friedman Fall of 2024
-Intended for use with modified ENDER 3 V2
-**AI was used for debugging -- Simplification of code**
-
- Refer to TwelvePensV5Working.py for more in depth commenting and documentation'''
-
-
-
-
+'''Written by Rick Friedman Fall of 2024
 
 
 
@@ -28,7 +20,7 @@ import shutil
 originalInput = Image.open('input_image.jpg')
 cmyk_img = originalInput.convert("CMYK")
 
-# Find size of input Image -- For testing
+# Find size of input Image (testing)
 width1, height1 = cmyk_img.size
 print(f' Original Image size: {width1}x{height1} pixels')
 
@@ -337,4 +329,5 @@ try:
     shutil.move(temp_filename, output_filename)
 except IOError as e:
     print(f"Error moving temporary file to output file: {e}")
+
     raise
