@@ -66,24 +66,27 @@
       transform: scale(1.05);
     }
 
-    .code-link {
+    .code-viewer {
+      margin-top: 2.5rem;
+    }
+
+    .code-viewer h2 {
       text-align: center;
-      margin-top: 2rem;
+      color: #2c3e50;
+      margin-bottom: 1rem;
     }
 
-    .code-link a {
-      display: inline-block;
-      background-color: #3498db;
-      color: white;
-      padding: 0.8rem 1.5rem;
+    .code-box {
+      background-color: #1e1e1e;
+      color: #dcdcdc;
+      font-family: 'Courier New', monospace;
+      padding: 1rem;
       border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
-
-    .code-link a:hover {
-      background-color: #2179b5;
+      overflow-x: auto;
+      overflow-y: scroll;
+      max-height: 500px;
+      border: 1px solid #ccc;
+      white-space: pre;
     }
 
     a.back {
@@ -132,16 +135,13 @@
         <li>This process is done one color at a time and when the G-Code of a specific color has been generated, a command is then written 
           to the extruder motor to rotate ninty degrees, allowing the next color to be used.</li>
         <li>This process is repeated for all four colors, with white space being skipped by the pens.</li>
-        <li>This G-Code is then saved to a micro SD card that is loaded into the printer and the physical drawing is created by the printer</li>
+        <li>This G-Code is then saved to a text file that is loaded into the printer and the physical drawing is created by the printer</li>
       </ol>
 
       <p>
         The image procesing and G-Code can be found in the files below the example images.
       </p>
 
-      <p>
-        lines with exact precision.
-      </p>
     </div>
 
     <div class="gallery">
@@ -150,8 +150,14 @@
       <img src="images/PrintedImage.JPG" alt="Printed Image Result">
     </div>
 
-    <div class="code-link">
-      <a href="files/RepurposedPrinterCode.txt" target="_blank">View Project Code</a>
+    <div class="code-viewer">
+      <h2>Embedded Python Code</h2>
+      <div class="code-box">
+        <object data="images/PhotoConverterV1.py" type="text/plain" width="100%" height="500">
+          <p>Your browser does not support embedded files. 
+          <a href="files/RepurposedPrinterCode.py" target="_blank">Click here to view the code.</a></p>
+        </object>
+      </div>
     </div>
 
     <a href="index.html" class="back">← Back to Home</a>
