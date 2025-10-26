@@ -110,36 +110,36 @@
     <div class="description">
       <p>
         This project repurposes a 3D printer into an automated drawing and plotting machine.
-        The printer’s tool head has been replaced with a custom made rotating pen holder that
+        The printer’s tool head has been replaced with a custom-made rotating pen holder that
         switches between CMYK colors to draw detailed images. This switching is done through
-        the repurposing of the original printers filiment extruder motor.
+        the repurposing of the original printer’s filament extruder motor.
       </p>
 
       <p>
-        The machine runs on custom made G-Code that is generated from an original input image.
-        This image is loaded into a custom python script that then generates G-Code through 
+        The machine runs on custom-made G-code that is generated from an original input image.
+        This image is loaded into a custom Python script that then generates G-code through 
         a couple of image processing steps that are detailed below.
       </p>
 
       <ol>
-        <li>Images are converted into a 600x600 matrix, with each cell containg the CMYK value of the corresponding pixel</li>
-        <li>These cell values are then simplified and the values are converted from unique CMYK color values to a single digit (0-3)
-          that represents the most promenent CMYK color in that cell. When white is the most prominent, the cell is left blank</li>
-        <li>This new simplified matrix is then scaled down from 600x600 to 100x100. To do this cells are grouped into 6x6 bloacks
+        <li>Images are converted into a 600x600 matrix, with each cell containing the CMYK value of the corresponding pixel.</li>
+        <li>These cell values are then simplified, and the values are converted from unique CMYK color values to a single digit (0–3)
+          that represents the most prominent CMYK color in that cell. When white is the most prominent, the cell is left blank.</li>
+        <li>This new simplified matrix is then scaled down from 600x600 to 100x100. To do this, cells are grouped into 6x6 blocks;
           these blocks are averaged, and the most prominent CMYK color digit is entered into the 100x100 matrix cell that represents
           this block.</li>
-        <li>Now that there is a 100x100 matrix representation of the initial image with single digit numbers representing the color
-          value of grouped together pixels, machine code (G-Code) is now made.</li>
-        <li>The python script loops through each cell in the matrix, and creates G-Code that moves the modified tool head to the physical
+        <li>Now that there is a 100x100 matrix representation of the initial image with single-digit numbers representing the color
+          value of grouped-together pixels, machine code (G-code) is now made.</li>
+        <li>The Python script loops through each cell in the matrix and creates G-code that moves the modified tool head to the physical
           location that the matrix cell represents. The tool head then lowers and creates a small dot of the specified color.</li>
-        <li>This process is done one color at a time and when the G-Code of a specific color has been generated, a command is then written 
-          to the extruder motor to rotate ninty degrees, allowing the next color to be used.</li>
+        <li>This process is done one color at a time, and when the G-code of a specific color has been generated, a command is then written 
+          to the extruder motor to rotate ninety degrees, allowing the next color to be used.</li>
         <li>This process is repeated for all four colors, with white space being skipped by the pens.</li>
-        <li>This G-Code is then saved to a text file that is loaded into the printer and the physical drawing is created by the printer</li>
+        <li>This G-code is then saved to a text file that is loaded into the printer, and the physical drawing is created by the printer.</li>
       </ol>
 
       <p>
-        The image procesing and G-Code can be found in the files below the example images.
+        The image processing and G-code can be found in the files below the example images.
       </p>
 
     </div>
@@ -151,17 +151,24 @@
     </div>
 
     <div class="code-viewer">
-      <h2>Embedded Python Code</h2>
-      <div class="code-box">
-        <object data="images/PhotoConverterV1.py" type="text/plain" width="100%" height="500">
-          <p>Your browser does not support embedded files. 
-          <a href="images/PhotoConverterV1.py" target="_blank">Click here to view the code.</a></p>
-        </object>
-      </div>
+      <h2>Python Script</h2>
+      <div class="code-box" id="codeContent">Loading code...</div>
     </div>
 
     <a href="index.html" class="back">← Back to Home</a>
   </div>
+
+  <script>
+    // Load and display the Python code inline
+    fetch("images/PhotoConverterV1.py")
+      .then(response => response.text())
+      .then(text => {
+        document.getElementById("codeContent").textContent = text;
+      })
+      .catch(err => {
+        document.getElementById("codeContent").textContent = 
+          "Unable to load code. Please check that 'PhotoConverterV1.py' is in the images folder.";
+      });
+  </script>
 </body>
 </html>
-
