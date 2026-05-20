@@ -3,44 +3,175 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Projects</title>
+  <title>Rick Friedman, Robotics Engineer</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
+    * { box-sizing: border-box; }
+
     body {
       font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f4f4f4;
-      color: #333;
+      background-color: #0f172a;
+      color: #e2e8f0;
+      font-weight: 300;
     }
+
     header {
-      background-color: #2c3e50;
-      color: white;
-      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    header nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    header nav a, header nav a:visited {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    header nav a:hover {
+      color: #f1f5f9;
+    }
+
+    header .name {
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    .tagline {
       text-align: center;
-    }
-    .container {
+      color: #e2e8f0;
       max-width: 800px;
-      margin: 2rem auto;
-      padding: 1rem;
-      background-color: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin: 4rem auto 5rem;
+      padding: 0 2rem;
+      font-size: 1.25rem;
+      font-weight: 300;
+      line-height: 1.5;
     }
-    .project {
-      border-bottom: 1px solid #ddd;
-      padding: 1rem 0;
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
     }
-    .project:last-child {
-      border-bottom: none;
+
+    .tile {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      border-radius: 8px;
+      overflow: hidden;
+      text-decoration: none;
+      display: block;
+      transition: transform 0.25s ease;
     }
-    .project h2 {
-      margin-top: 0;
+
+    .tile:hover {
+      transform: translateY(-4px);
     }
-    a {
-      color: #3498db;
+
+    .tile-default {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.25rem 1.5rem;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.1) 55%, rgba(15, 23, 42, 0) 100%);
+      transition: opacity 0.25s ease;
+    }
+
+    .tile-default h2 {
+      color: #f1f5f9;
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .tile-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.96);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1.75rem;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .tile:hover .tile-overlay {
+      opacity: 1;
+    }
+
+    .tile:hover .tile-default {
+      opacity: 0;
+    }
+
+    .tile-overlay h3 {
+      color: #38bdf8;
+      margin: 0 0 0.6rem 0;
+      font-size: 1.15rem;
+      font-weight: 500;
+    }
+
+    .tile-overlay p {
+      color: #e2e8f0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin: 0 0 1rem 0;
+    }
+
+    .tile-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: auto;
+    }
+
+    .tile-tag {
+      font-size: 0.7rem;
+      color: #38bdf8;
+      background: #334155;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      font-weight: 400;
+    }
+
+    /* Tile background variants, placeholder colors per project type */
+    .tile-ctrlr     { background: #1e293b url('images/ctrlr-cover.png') center/cover; }
+    .tile-capstone  { background: #1e293b url('images/Ros2Still.jpg') center/cover; }
+    .tile-arm       { background: linear-gradient(135deg, #0f766e, #1e293b); }
+    .tile-biolab    { background: #1e293b url('images/bio-lab-rig.jpg') center/cover; }
+    .tile-printer   { background: #1e293b url('images/PrinterWithToolHead.JPG') center/cover; }
+    .tile-etsy      { background: #1e293b url('images/fishing-rod-holder.png') center/cover; }
+
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      .tagline { font-size: 1.1rem; margin: 2.5rem auto 3rem; }
+      header { flex-direction: column; gap: 1rem; }
+    }
+    a, a:visited {
+      color: #38bdf8;
       text-decoration: none;
     }
+
     a:hover {
       text-decoration: underline;
     }
@@ -48,22 +179,117 @@
 </head>
 <body>
   <header>
-    <h1>Welcome to My Portfolio</h1>
-    <p>Explore my engineering and software projects</p>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="about.html">About</a>
+      <a href="resume.pdf" target="_blank">Resume</a>
+      <a href="https://github.com/rickford1" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/rick-friedman-4b2485237" target="_blank">LinkedIn</a>
+    </nav>
+    <div class="name">Rick Friedman</div>
   </header>
-  <div class="container">
-    <div class="project">
-      <h2><a href="project3.html">Autonomous Ground Vehicle</a></h2>
-      <p>Fully autonomous ROS2-based vehicle using ZED2 camera, Lidar, and Nvidia Jetson Nano.</p>
-    </div>
-    <div class="project">
-      <h2><a href="project21.html">Online shop for my 3D prints</a></h2>
-      <p> An online shop where I sell 3D prints and designs that I have made</p>
-    </div>
-    <div class="project">
-      <h2><a href="project1.html">Repurposed 3D printer</a></h2>
-      <p>An old 3D printer that I have Repurposed to plot 2D images that are created using a custom python program</p>
-    </div>
-  </div>
+
+  <p class="tagline">
+    Rick is a robotics engineer building production systems across ROS2, Rust, and the cloud, turning research-grade robotics into platforms people can actually use.
+  </p>
+
+  <section class="grid" id="work">
+
+    <a href="project_ctrlr.html" class="tile tile-ctrlr">
+      <div class="tile-default">
+        <h2>CTRL+R</h2>
+      </div>
+      <div class="tile-overlay">
+        <h3>Robotics Engineer · CTRL+R</h3>
+        <p>Led day-to-day engineering on the on-robot Rust agent powering a browser-based robotics teleoperation platform.</p>
+        <div class="tile-tags">
+          <span class="tile-tag">Rust</span>
+          <span class="tile-tag">ROS2</span>
+          <span class="tile-tag">WebRTC</span>
+          <span class="tile-tag">Isaac Sim</span>
+          <span class="tile-tag">AWS</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="project3.html" class="tile tile-capstone">
+      <div class="tile-default">
+        <h2>Autonomous Ground Vehicle</h2>
+      </div>
+      <div class="tile-overlay">
+        <h3>Senior Capstone</h3>
+        <p>Fully autonomous off-road rover navigating unmapped, dynamic environments, GPS-integrated Nav2, IMU/Lidar/ZED2 sensor fusion, and micro-ROS embedded control.</p>
+        <div class="tile-tags">
+          <span class="tile-tag">ROS2</span>
+          <span class="tile-tag">Nav2</span>
+          <span class="tile-tag">micro-ROS</span>
+          <span class="tile-tag">Jetson</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="project_robotic_arm.html" class="tile tile-arm">
+      <div class="tile-default">
+        <h2>Open-Source Robotic Arm</h2>
+      </div>
+      <div class="tile-overlay">
+        <h3>Personal Project · In Progress</h3>
+        <p>Designing a fully 3D-printable, object-identifying robotic arm with Jetson vision, Pi Pico micro-ROS control, and Feetech bus servos. Open-source CAD and software.</p>
+        <div class="tile-tags">
+          <span class="tile-tag">Open Source</span>
+          <span class="tile-tag">CAD</span>
+          <span class="tile-tag">Jetson</span>
+          <span class="tile-tag">Pi Pico</span>
+          <span class="tile-tag">micro-ROS</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="project_bio_lab.html" class="tile tile-biolab">
+      <div class="tile-default">
+        <h2>Bio-Inspired Soft Robotics</h2>
+      </div>
+      <div class="tile-overlay">
+        <h3>VT Bio-Inspired Lab</h3>
+        <p>Soft-robotics rig replicating bat ear movements for an ongoing sonar-based autonomous navigation research effort.</p>
+        <div class="tile-tags">
+          <span class="tile-tag">Soft Robotics</span>
+          <span class="tile-tag">Research</span>
+          <span class="tile-tag">SolidWorks</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="project1.html" class="tile tile-printer">
+      <div class="tile-default">
+        <h2>Repurposed 3D Printer</h2>
+      </div>
+      <div class="tile-overlay">
+        <h3>CMYK Plotter</h3>
+        <p>Converted an old 3D printer into an automated CMYK image plotter driven by a custom Python g-code generator.</p>
+        <div class="tile-tags">
+          <span class="tile-tag">Python</span>
+          <span class="tile-tag">G-code</span>
+          <span class="tile-tag">Image Processing</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="project21.html" class="tile tile-etsy">
+      <div class="tile-default">
+        <h2>Rilos 3D Solutions</h2>
+      </div>
+      <div class="tile-overlay">
+        <h3>Etsy Shop · Founder</h3>
+        <p>Online shop selling custom-designed 3D-printed parts; two years of operation and $10,000+ in revenue.</p>
+        <div class="tile-tags">
+          <span class="tile-tag">CAD</span>
+          <span class="tile-tag">FDM</span>
+          <span class="tile-tag">Small Business</span>
+        </div>
+      </div>
+    </a>
+
+  </section>
 </body>
 </html>

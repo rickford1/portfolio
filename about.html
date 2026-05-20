@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About, Rick Friedman</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #0f172a;
+      color: #e2e8f0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: #1e293b;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      border-radius: 8px;
+    }
+
+    h1 {
+      color: #f1f5f9;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      color: #f1f5f9;
+      border-bottom: 2px solid #38bdf8;
+      padding-bottom: 0.4rem;
+      margin-top: 2rem;
+    }
+
+    .bio-flex {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .bio-photo {
+      flex: 0 0 200px;
+      max-width: 200px;
+      height: 200px;
+      background: #334155;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 2px solid #38bdf8;
+    }
+
+    .bio-text {
+      flex: 1 1 400px;
+      line-height: 1.7;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .skill-group {
+      background: #334155;
+      padding: 1rem;
+      border-radius: 6px;
+    }
+
+    .skill-group h3 {
+      margin-top: 0;
+      color: #f1f5f9;
+      font-size: 1rem;
+    }
+
+    .skill-group ul {
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+
+    .contact-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .contact-list li {
+      margin-bottom: 0.6rem;
+    }
+
+    a, a:visited {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>About Me</h1>
+
+    <div class="bio-flex">
+      <img src="images/profile.jpeg" alt="Rick Friedman" class="bio-photo">
+      <div class="bio-text">
+        <p>I'm a robotics engineer with a B.S. in Mechanical Engineering, robotics and mechatronics concentration, from Virginia Tech. I'm currently doing robotics software contract work for a startup, building on a background that mixes hardware and software pretty heavily.</p>
+        <p>I've worn a lot of hats along the way: Lead Undergraduate Researcher at Virginia Tech's Bio-Inspired Science and Technology Lab, a mechanical engineering co-op in heavy industry, leadership roles across school and engineering teams, and a lot of software engineering through both professional work and personal projects. I'm also entrepreneurial, I run Rilos 3D Solutions, an online shop where I sell 3D-printed parts I've designed and made myself.</p>
+        <p>When I'm not engineering, I'm usually building or tinkering with something. When I'm not doing that, I'm outdoors.</p>
+      </div>
+    </div>
+
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Languages</h3>
+        <ul>
+          <li>Python</li>
+          <li>C++</li>
+          <li>Rust</li>
+          <li>[Add others]</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Robotics</h3>
+        <ul>
+          <li>ROS2</li>
+          <li>Nav2</li>
+          <li>SLAM</li>
+          <li>NVIDIA Isaac Sim</li>
+          <li>[Add others]</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Systems &amp; Cloud</h3>
+        <ul>
+          <li>Linux</li>
+          <li>Docker</li>
+          <li>AWS</li>
+          <li>WebRTC</li>
+          <li>CI/CD</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Hardware &amp; Design</h3>
+        <ul>
+          <li>SolidWorks</li>
+          <li>Fusion 360</li>
+          <li>FDM / SLA 3D Printing</li>
+          <li>PCB Soldering</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Contact</h2>
+    <ul class="contact-list">
+      <li>Email: <a href="mailto:rickfriedman@vt.edu">rickfriedman@vt.edu</a></li>
+      <li>GitHub: <a href="https://github.com/rickford1" target="_blank">github.com/rickford1</a></li>
+      <li>LinkedIn: <a href="https://www.linkedin.com/in/rick-friedman-4b2485237" target="_blank">linkedin.com/in/rick-friedman</a></li>
+      <li>Resume: <a href="resume.pdf" target="_blank">Download PDF</a></li>
+    </ul>
+
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </div>
+</body>
+</html>

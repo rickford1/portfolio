@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CTRL+R · Robotics Engineer</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #0f172a;
+      color: #e2e8f0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: #1e293b;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      border-radius: 8px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #f1f5f9;
+      margin-bottom: 0.25rem;
+    }
+
+    h2 {
+      color: #f1f5f9;
+      border-bottom: 2px solid #38bdf8;
+      padding-bottom: 0.4rem;
+      margin-top: 2.5rem;
+    }
+
+    h3 {
+      color: #f1f5f9;
+      margin-top: 1.8rem;
+      margin-bottom: 0.4rem;
+    }
+
+    p {
+      line-height: 1.7;
+    }
+
+    .meta {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.9rem;
+      margin-top: 0;
+    }
+
+    .tech-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+
+    .tag {
+      background: #334155;
+      color: #38bdf8;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    img, video {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 1.5rem auto;
+      border: 1px solid #334155;
+      border-radius: 6px;
+    }
+
+    ul {
+      line-height: 1.7;
+    }
+
+    .callout {
+      background: #0f172a;
+      border-left: 3px solid #38bdf8;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .callout p {
+      margin: 0.25rem 0;
+    }
+
+    .callout strong {
+      color: #38bdf8;
+    }
+
+    a.back-link, a.back-link:visited {
+      display: inline-block;
+      margin-top: 2rem;
+      color: #38bdf8;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+    a, a:visited {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CTRL+R · Robotics Engineer</h1>
+    <p class="meta">Jan 2026 – Present</p>
+
+    <div class="tech-tags">
+      <span class="tag">Rust</span>
+      <span class="tag">ROS2</span>
+      <span class="tag">WebRTC</span>
+      <span class="tag">NVIDIA Isaac Sim</span>
+      <span class="tag">AWS</span>
+      <span class="tag">Linux</span>
+      <span class="tag">Docker</span>
+    </div>
+
+    <h2>The Platform</h2>
+    <p>CTRL+R is a browser-based robotics teleoperation platform that connects physical robots to operators over WebRTC, with fleet management, video streaming, navigation, and gamepad-based control. The system has two halves: a React webapp where operators control fleets, and a Rust agent that runs on each robot and bridges the platform to the local ROS2 stack.</p>
+
+    <h2>My Role</h2>
+    <p>Helped run day-to-day engineering operations on the CTRL+R agent and webapp. Owned product features from conception all the way through final deployment to clients and partners. Collaborated closely with an international team of engineers.</p>
+
+    <h2>Key Contributions</h2>
+
+    <h3>Remote ROS2 Command Pipeline</h3>
+    <p>Built a custom Rust ↔ ROS2 pipeline that lets users remotely create ROS2 topics and commands through the webapp and have them persist onto the robot from anywhere in the world, enabling robot customization without ever physically touching the machine. Managed the message schema interface between webapp and agent, and designed the webapp-driven waypoint navigation flow.</p>
+
+    <h3>Cloud Simulation Environment</h3>
+    <p>Built an AWS EC2 Isaac Sim server hosting six simulated robots across two back-to-back maps, each running its own ROS stack. The CTRL+R agent connects to it the same way it connects to physical robots, giving prospective users a hardware-free way to evaluate the platform. Also built a custom simulation environment inside Isaac Sim for a prospective customer, using a custom AprilTag API plus an EKF for localization.</p>
+
+    <h3>Connectivity, Reliability &amp; Safety</h3>
+    <p>Diagnosed a TURN-server configuration issue and stood up the relay so users can connect behind NATs and firewalls. Built automatic reconnection and refresh into the system, plus the infrastructure for multiple reconnections per session.</p>
+
+    <p>Diagnosed and fixed silent WebRTC disconnects against AWS signaling, shipping a layered timeout and recovery design that bounds worst-case recovery to 10 minutes across all failure modes, including the AWS 2-hour hard connection limit, silent TCP death, and idle timeouts.</p>
+
+    <h3>Deployment &amp; Distribution</h3>
+    <p>Dockerized the agent and packaged it into a one-line curl installer with automatic CPU architecture detection (correct image pulled per platform). Added dynamic ROS topic paths to a persistent on-robot config file so customizations survive reboots. Maintained and improved the CI/CD pipeline.</p>
+
+    <h3>Telemetry Pipeline</h3>
+    <p>Built a secondary, throttled data pipeline that exports robot data as MCAP files for real-time visualization, throttled deliberately to avoid impacting the control or video streams running over the primary WebRTC channel.</p>
+
+    <h3>Cross-Platform Validation</h3>
+    <p>Tested the agent on multiple physical robotic platforms across different ROS SDKs, Unitree, Slamtec, Bracket Bot, Viam Rover, surfacing and resolving platform-specific integration issues.</p>
+
+    <h2>Impact</h2>
+    <ul>
+      <li>Led multiple customer demos and produced tutorial videos.</li>
+      <li>Helped secure the company's first major partnership.</li>
+    </ul>
+
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </div>
+</body>
+</html>

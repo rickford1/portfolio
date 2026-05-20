@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open-Source Robotic Arm, Object-Identifying Pick &amp; Place</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #0f172a;
+      color: #e2e8f0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: #1e293b;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      border-radius: 8px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #f1f5f9;
+      margin-bottom: 0.25rem;
+    }
+
+    h2 {
+      color: #f1f5f9;
+      border-bottom: 2px solid #38bdf8;
+      padding-bottom: 0.4rem;
+      margin-top: 2.5rem;
+    }
+
+    h3 {
+      color: #f1f5f9;
+      margin-top: 1.8rem;
+      margin-bottom: 0.4rem;
+    }
+
+    p {
+      line-height: 1.7;
+    }
+
+    ul {
+      line-height: 1.7;
+    }
+
+    .meta {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.9rem;
+      margin-top: 0;
+    }
+
+    .status-badge {
+      display: inline-block;
+      background: #422006;
+      color: #fbbf24;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .tech-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+
+    .tag {
+      background: #334155;
+      color: #38bdf8;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 1.5rem auto;
+      border: 1px solid #334155;
+      border-radius: 6px;
+    }
+
+    .callout {
+      background: #0f172a;
+      border-left: 3px solid #38bdf8;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .callout p {
+      margin: 0.25rem 0;
+    }
+
+    .callout strong {
+      color: #38bdf8;
+    }
+
+    a.external-link, a.external-link:visited {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      background-color: #38bdf8;
+      color: #0f172a;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    a.external-link:hover {
+      background-color: #0ea5e9;
+    }
+
+    a.back-link, a.back-link:visited {
+      display: inline-block;
+      margin-top: 2rem;
+      color: #38bdf8;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+    a, a:visited {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Open-Source Robotic Arm <span class="status-badge">In Progress</span></h1>
+    <p class="meta">Personal Project · 2026 – Present</p>
+
+    <div class="tech-tags">
+      <span class="tag">Open Source</span>
+      <span class="tag">ROS2</span>
+      <span class="tag">MoveIt2</span>
+      <span class="tag">micro-ROS</span>
+      <span class="tag">SolidWorks</span>
+      <span class="tag">3D Printing</span>
+      <span class="tag">NVIDIA Jetson</span>
+      <span class="tag">Pi Pico</span>
+      <span class="tag">Computer Vision</span>
+    </div>
+
+    <h2>The Idea</h2>
+    <p>A fully 3D-printable, open-source robotic arm that can identify and manipulate objects in its workspace, designed so anyone with a printer, a few Feetech serial-bus servos, and an NVIDIA Jetson can build their own. The goal is a documented, end-to-end reference platform, mechanical CAD, embedded firmware, ROS2 control stack, that someone else can clone, modify, and contribute to.</p>
+
+    <h2>Architecture</h2>
+    <p>Three layers, each running on the hardware best suited to it:</p>
+
+    <h3>Mechanical, 3 DOF + Parallel-Jaw Gripper</h3>
+    <ul>
+      <li>Fully 3D-printable structure designed in SolidWorks, base, two arm links, and a parallel-jaw gripper.</li>
+      <li>Feetech serial-bus servos at each joint: <strong>1× STS3250 (50 kg·cm)</strong> at the base for the highest-torque joint, <strong>2× STS3215 (30 kg·cm)</strong> driving the arm joints, and <strong>1× STS3215</strong> driving the gripper.</li>
+      <li>Designed for FDM printability, no support-heavy geometry, snap-fit assembly where possible.</li>
+    </ul>
+
+    <h3>Embedded Control, Pi Pico + micro-ROS</h3>
+    <ul>
+      <li>Raspberry Pi Pico runs <strong>micro-ROS</strong>.</li>
+      <li>Drives the Feetech servo bus through a <strong>Waveshare bus adapter</strong> (half-duplex TTL conversion + 12V power breakout).</li>
+      <li>Keeps the real-time servo control loop isolated from the Jetson, so vision-stack load can't affect joint timing.</li>
+    </ul>
+
+    <h3>Vision &amp; Planning, Jetson + Intel RealSense D415</h3>
+    <ul>
+      <li>NVIDIA Jetson runs the ROS2 stack, <strong>MoveIt2</strong> for motion planning, <strong>realsense-ros</strong> for depth perception.</li>
+      <li>Intel RealSense D415 depth camera mounted <strong>eye-to-hand</strong>, fixed view of the workspace, with the URDF calibrated to the camera frame.</li>
+      <li>Depth pointcloud feeds into MoveIt2's collision-checking layer for obstacle awareness during planning.</li>
+    </ul>
+
+    <h2>Current Progress</h2>
+    <p>The project is in the early CAD and architecture-definition stage. Most of the work right now is in SolidWorks, base and the first arm link are done, with the remaining joints, wrist, and gripper still to design. In parallel I'm laying out the URDF structure and the micro-ROS node, so the software stack will be ready when the mechanical side is.</p>
+
+    <h2>The Long-Term Goal, Etsy Integration</h2>
+    <p>The bigger picture: I run an Etsy shop (<a href="project21.html">Rilos 3D Solutions</a>) selling 3D-printed parts I design myself. The eventual goal for this arm is to integrate into that fulfillment workflow, picking and packing light 3D-printed products as orders come in.</p>
+
+
+    <!--
+    <h2>Repository</h2>
+    <a class="external-link" href="REPO_URL_HERE" target="_blank">🔗 View on GitHub</a>
+    -->
+
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </div>
+</body>
+</html>

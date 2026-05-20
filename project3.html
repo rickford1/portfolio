@@ -2,51 +2,79 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Autonomous Ground Vehicle</title>
+  <title>Autonomous Ground Vehicle, Senior Capstone</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f7f9fa;
-      color: #333;
+      background-color: #0f172a;
+      color: #e2e8f0;
     }
 
     .container {
       max-width: 900px;
       margin: 3rem auto;
       padding: 2rem;
-      background: #fff;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      background: #1e293b;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
       border-radius: 8px;
     }
 
     h1 {
       text-align: center;
-      color: #2c3e50;
-      margin-bottom: 1.5rem;
+      color: #f1f5f9;
+      margin-bottom: 0.25rem;
     }
 
     h2 {
-      text-align: center;
-      color: #2c3e50;
+      color: #f1f5f9;
+      border-bottom: 2px solid #38bdf8;
+      padding-bottom: 0.4rem;
+      margin-top: 2rem;
+    }
+
+    h3 {
+      color: #f1f5f9;
       margin-top: 1.5rem;
-      margin-bottom: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    p {
+      line-height: 1.7;
+    }
+
+    .meta {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.9rem;
+      margin-top: 0;
+    }
+
+    .tech-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+
+    .tag {
+      background: #334155;
+      color: #38bdf8;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
     }
 
     img {
       display: block;
       max-width: 100%;
       height: auto;
-      margin: 0 auto 1.5rem;
-      border: 1px solid #ccc;
+      margin: 1.5rem auto;
+      border: 1px solid #334155;
       border-radius: 6px;
-    }
-
-    p {
-      line-height: 1.6;
-      margin-bottom: 1rem;
     }
 
     video {
@@ -56,13 +84,13 @@
       height: auto;
       margin: 2rem auto;
       border-radius: 8px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.5);
     }
 
-    a.back-link {
+    a.back-link, a.back-link:visited {
       display: inline-block;
       margin-top: 2rem;
-      color: #3498db;
+      color: #38bdf8;
       text-decoration: none;
       font-weight: 600;
     }
@@ -74,22 +102,28 @@
     /* === Sensor Section Styling === */
     .sensor-flex {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
       gap: 2.5rem;
       flex-wrap: wrap;
+      margin-bottom: 2rem;
     }
 
     .sensor-flex ul {
-      flex: 1 1 350px;
+      flex: 1 1 300px;
       margin: 0;
-      padding-left: 2rem;
+      padding-left: 1.2rem;
+      line-height: 2;
+    }
+
+    .sensor-flex ul li {
+      padding-left: 0.3rem;
     }
 
     .sensor-image {
-      flex: 1 1 400px;
-      max-width: 420px;
-      border: 1px solid #ccc;
+      flex: 1 1 420px;
+      max-width: 480px;
+      border: 1px solid #334155;
       border-radius: 8px;
     }
 
@@ -107,46 +141,72 @@
         max-width: 100%;
       }
     }
+    a, a:visited {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Autonomous Ground Vehicle</h1>
+    <p class="meta">Senior Capstone · Fall 2024 – Spring 2025</p>
 
-    <img src="images/Ros2Still.jpg" alt="Screenshot of Project 1" width="500">
-
-    <div class="section">
-      <h2>Overview</h2>
-      <p>This project was completed as part of my 2025 senior design capstone. The goal was to design and build a fully autonomous ground vehicle using the Robot Operating System 2 (ROS2).</p>
-      <p>My responsibilities included leading the development of the electronics and software stack, working in C, C++, ROS2, and Linux. I was also heavily involved in testing, debugging, and system validation.</p>
+    <div class="tech-tags">
+      <span class="tag">ROS2</span>
+      <span class="tag">Nav2</span>
+      <span class="tag">SLAM</span>
+      <span class="tag">NVIDIA Jetson</span>
+      <span class="tag">Lidar</span>
+      <span class="tag">C++</span>
     </div>
 
-    <div class="section sensors-section">
-      <h2>Integration Components</h2>
-      <div class="sensor-flex">
-        <ul>
-          <li>Nvidia Jetson Orin Nano</li>
-          <li>Teensy 4.0</li>
-          <li>Teknic ClearPath motors (4 × 48V motors)</li>
-          <li>Custom motor feedback boards</li>
-          <li>Zed2 Stereo Camera</li>
-          <li>Oak-D Stereo Camera</li>
-          <li>Hokuyo UTM-30LX Lidar</li>
-          <li>9-DOF IMU</li>
-          <li>Varying step-down converters</li>
-        </ul>
+    <img src="images/Ros2Still.jpg" alt="ROS2 visualization of the autonomous ground vehicle" width="500">
 
-        <img src="images/WiringDiagram.jpg" alt="Sensors diagram" class="sensor-image">
-      </div>
+    <h2>Overview</h2>
+    <p>My 2025 senior design capstone. The goal was to design and build a fully autonomous off-road ground vehicle in ROS2, capable of navigating unmapped, dynamic outdoor environments without prior maps.</p>
+    <p>I led the electrical and software side of the project, working in C, C++, ROS2, and Linux. This was where I fell in love with robotic systems and low-latency middleware like ROS.</p>
+
+    <h2>Integration Components</h2>
+    <div class="sensor-flex">
+      <ul>
+        <li>NVIDIA Jetson Nano (high-level compute)</li>
+        <li>Teensy 4.1 running micro-ROS (low-level control)</li>
+        <li>Teknic ClearPath motors (4 × 48V)</li>
+        <li>Custom motor control board</li>
+        <li>ZED2 stereo depth camera</li>
+        <li>Hokuyo UTM-30LX Lidar</li>
+        <li>9-DOF IMU</li>
+        <li>GPS</li>
+        <li>Single battery + multiple buck converters</li>
+      </ul>
+
+      <img src="images/WiringDiagram.jpg" alt="Sensors diagram" class="sensor-image">
     </div>
 
-    <p style="text-align: center;">Watch a demonstration video below:</p>
-
-    <!-- Embedded MP4 video -->
+    <h2>Demo</h2>
     <video controls muted>
       <source src="images/OffRoad.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
+
+    <h2>Technical Deep Dive</h2>
+
+    <h3>Localization Approach, Why No SLAM</h3>
+    <p>The rover operated in unmapped, constantly changing outdoor environments, SLAM wasn't the right fit. Instead we used a GPS-anchored localization approach: GPS for global pose, IMU for heading, and Lidar plus the ZED2 depth camera for local obstacle perception. Nav2 ran on top of that fusion, letting the rover navigate environments it had never seen before in real time.</p>
+
+    <h3>Path Planning (Nav2 with GPS Integration)</h3>
+    <p>Nav2 was configured to consume GPS as the global localization source instead of the typical static map. The hard part was tuning the local planner to handle off-road obstacles that appeared and moved unpredictably while still respecting GPS-derived global goals.</p>
+
+    <h3>Sensor Fusion</h3>
+    <p>GPS, IMU, Lidar (Hokuyo), and the ZED2 depth camera each contributed a different piece of the picture, GPS for global position, IMU for heading, Lidar for precise 2D obstacle geometry, and the ZED2 for 3D depth in off-road terrain. The trickiest part was reconciling them when they disagreed, especially GPS dropouts and IMU drift.</p>
+
+    <h3>Embedded System</h3>
+    <p>Low-level control ran on a Teensy 4.1 with micro-ROS, bridging to a Jetson Nano running the ROS2 navigation stack. A custom motor control board drove the ClearPath motors directly. The entire system ran off a single battery with multiple buck converters stepping voltage down for each subsystem.</p>
 
     <a class="back-link" href="index.html">← Back to Home</a>
   </div>
