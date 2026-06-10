@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Open-Source Robotic Arm, Object-Identifying Pick &amp; Place</title>
+  <title>Robotic Arm, Object-Identifying Pick &amp; Place</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
@@ -148,39 +148,36 @@
 </head>
 <body>
   <div class="container">
-    <h1>Open-Source Robotic Arm <span class="status-badge">In Progress</span></h1>
+    <h1>Robotic Arm <span class="status-badge">In Progress</span></h1>
     <p class="meta">Personal Project · 2026 – Present</p>
 
     <div class="tech-tags">
-      <span class="tag">Open Source</span>
       <span class="tag">ROS2</span>
       <span class="tag">MoveIt2</span>
-      <span class="tag">micro-ROS</span>
       <span class="tag">SolidWorks</span>
       <span class="tag">3D Printing</span>
       <span class="tag">NVIDIA Jetson</span>
-      <span class="tag">Pi Pico</span>
+      <span class="tag">Feetech Servos</span>
       <span class="tag">Computer Vision</span>
     </div>
 
     <h2>The Idea</h2>
-    <p>A fully 3D-printable, open-source robotic arm that can identify and manipulate objects in its workspace, designed so anyone with a printer, a few Feetech serial-bus servos, and an NVIDIA Jetson can build their own. The goal is a documented, end-to-end reference platform, mechanical CAD, embedded firmware, ROS2 control stack, that someone else can clone, modify, and contribute to.</p>
+    <p>A fully 3D-printable robotic arm that can identify and manipulate objects in its workspace, designed so anyone with a printer, a few Feetech serial-bus servos, and an NVIDIA Jetson can build their own. The goal is a documented, end-to-end reference platform, mechanical CAD, embedded firmware, ROS2 control stack, that someone else can clone, modify, and build on.</p>
 
     <h2>Architecture</h2>
     <p>Three layers, each running on the hardware best suited to it:</p>
 
-    <h3>Mechanical, 3 DOF + Parallel-Jaw Gripper</h3>
+    <h3>Mechanical, 5 DOF + Parallel-Jaw Gripper</h3>
     <ul>
-      <li>Fully 3D-printable structure designed in SolidWorks, base, two arm links, and a parallel-jaw gripper.</li>
-      <li>Feetech serial-bus servos at each joint: <strong>1× STS3250 (50 kg·cm)</strong> at the base for the highest-torque joint, <strong>2× STS3215 (30 kg·cm)</strong> driving the arm joints, and <strong>1× STS3215</strong> driving the gripper.</li>
+      <li>Fully 3D-printable structure designed in SolidWorks, base, arm links, wrist, and a parallel-jaw gripper.</li>
+      <li><strong>Six Feetech STS3215 (30 kg·cm)</strong> serial-bus servos, five driving the arm joints and one driving the gripper.</li>
       <li>Designed for FDM printability, no support-heavy geometry, snap-fit assembly where possible.</li>
     </ul>
 
-    <h3>Embedded Control, Pi Pico + micro-ROS</h3>
+    <h3>Servo Control, Waveshare Serial Bus Driver Board</h3>
     <ul>
-      <li>Raspberry Pi Pico runs <strong>micro-ROS</strong>.</li>
-      <li>Drives the Feetech servo bus through a <strong>Waveshare bus adapter</strong> (half-duplex TTL conversion + 12V power breakout).</li>
-      <li>Keeps the real-time servo control loop isolated from the Jetson, so vision-stack load can't affect joint timing.</li>
+      <li>A <strong>Waveshare ST/SC Serial Bus Servo Driver Board</strong> drives the Feetech serial-bus servos, handling the half-duplex TTL communication and 12V power breakout.</li>
+      <li>Connects to the Jetson over USB/serial, which sends joint commands and reads back servo feedback (position, load), offloading the low-level bus handling from the main compute.</li>
     </ul>
 
     <h3>Vision &amp; Planning, Jetson + Intel RealSense D415</h3>
@@ -191,7 +188,13 @@
     </ul>
 
     <h2>Current Progress</h2>
-    <p>The project is in the early CAD and architecture-definition stage. Most of the work right now is in SolidWorks, base and the first arm link are done, with the remaining joints, wrist, and gripper still to design. In parallel I'm laying out the URDF structure and the micro-ROS node, so the software stack will be ready when the mechanical side is.</p>
+    <p>The full arm is now modeled in SolidWorks, all five joints, the gripper, links, wrist, and base, and a first physical prototype has been 3D-printed, assembled, and wired with the Feetech serial-bus servos. Current work is on the servo control through the Waveshare driver board and bringing up the ROS2 / MoveIt2 stack, with the RealSense vision integration to follow.</p>
+
+    <img src="images/arm-cad.png" alt="SolidWorks CAD assembly of the 6-DOF robotic arm" />
+    <p class="meta">Full 6-DOF assembly modeled in SolidWorks, joint axes shown.</p>
+
+    <img src="images/arm-build.png" alt="3D-printed robotic arm assembled and wired" />
+    <p class="meta">First 3D-printed prototype, assembled and wired with the Feetech servo bus.</p>
 
     <h2>The Long-Term Goal, Etsy Integration</h2>
     <p>The bigger picture: I run an Etsy shop (<a href="project21.html">Rilos 3D Solutions</a>) selling 3D-printed parts I design myself. The eventual goal for this arm is to integrate into that fulfillment workflow, picking and packing light 3D-printed products as orders come in.</p>
