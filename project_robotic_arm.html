@@ -162,7 +162,7 @@
     </div>
 
     <h2>The Idea</h2>
-    <p>A fully 3D-printable robotic arm that can identify and manipulate objects in its workspace, designed so anyone with a printer, a few Feetech serial-bus servos, and an NVIDIA Jetson can build their own. The goal is a documented, end-to-end reference platform, mechanical CAD, embedded firmware, ROS2 control stack, that someone else can clone, modify, and build on.</p>
+    <p>A fully 3D-printable robotic arm that can identify and manipulate objects in its workspace, designed so anyone with a printer, a few Feetech serial-bus servos, and an NVIDIA Jetson can build their own. The goal is a documented, end-to-end reference platform, mechanical CAD, control software, ROS2 control stack, that someone else can clone, modify, and build on.</p>
 
     <h2>Architecture</h2>
     <p>Three layers, each running on the hardware best suited to it:</p>
@@ -190,8 +190,8 @@
     <h2>Current Progress</h2>
     <p>The full arm is now modeled in SolidWorks, all five joints, the gripper, links, wrist, and base, and a first physical prototype has been 3D-printed, assembled, and wired with the Feetech serial-bus servos. Current work is on the servo control through the Waveshare driver board and bringing up the ROS2 / MoveIt2 stack, with the RealSense vision integration to follow.</p>
 
-    <img src="images/arm-cad.png" alt="SolidWorks CAD assembly of the 6-DOF robotic arm" />
-    <p class="meta">Full 6-DOF assembly modeled in SolidWorks, joint axes shown.</p>
+    <img src="images/arm-cad.png" alt="SolidWorks CAD assembly of the 5-DOF robotic arm" />
+    <p class="meta">Full 5-DOF assembly (plus gripper) modeled in SolidWorks, joint axes shown.</p>
 
     <img src="images/arm-build.png" alt="3D-printed robotic arm assembled and wired" />
     <p class="meta">First 3D-printed prototype, assembled and wired with the Feetech servo bus.</p>

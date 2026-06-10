@@ -143,21 +143,16 @@
     <h2>Key Contributions</h2>
 
     <h3>Remote ROS2 Command Pipeline</h3>
-    <p>Built a custom Rust ↔ ROS2 pipeline that lets users remotely create ROS2 topics and commands through the webapp and have them persist onto the robot from anywhere in the world, enabling robot customization without ever physically touching the machine. Managed the message schema interface between webapp and agent, and designed the webapp-driven waypoint navigation flow.</p>
+    <p>Assisted in the development of a custom Rust ↔ ROS2 pipeline that lets users remotely create ROS2 topics and commands through the webapp and have them persist onto the robot from anywhere in the world, enabling robot customization without ever physically touching the machine. Managed the message schema interface between webapp and agent, and designed the webapp-driven waypoint navigation flow.</p>
 
     <h3>Cloud Simulation Environment</h3>
-    <p>Built an AWS EC2 Isaac Sim server hosting six simulated robots across two back-to-back maps, each running its own ROS stack. The CTRL+R agent connects to it the same way it connects to physical robots, giving prospective users a hardware-free way to evaluate the platform. Also built a custom simulation environment inside Isaac Sim for a prospective customer, using a custom AprilTag API plus an EKF for localization.</p>
+    <p>Built an AWS EC2 Isaac Sim server hosting multiple simulated robots simultaneously, each running its own ROS stack. The CTRL+R agent connects to it the same way it connects to physical robots, giving prospective users a hardware-free way to evaluate the platform. Also built a custom simulation environment inside Isaac Sim for a prospective customer, using a custom AprilTag API plus an EKF for localization.</p>
 
     <h3>Connectivity, Reliability &amp; Safety</h3>
     <p>Diagnosed a TURN-server configuration issue and stood up the relay so users can connect behind NATs and firewalls. Built automatic reconnection and refresh into the system, plus the infrastructure for multiple reconnections per session.</p>
 
-    <p>Diagnosed and fixed silent WebRTC disconnects against AWS signaling, shipping a layered timeout and recovery design that bounds worst-case recovery to 10 minutes across all failure modes, including the AWS 2-hour hard connection limit, silent TCP death, and idle timeouts.</p>
-
     <h3>Deployment &amp; Distribution</h3>
     <p>Dockerized the agent and packaged it into a one-line curl installer with automatic CPU architecture detection (correct image pulled per platform). Added dynamic ROS topic paths to a persistent on-robot config file so customizations survive reboots. Maintained and improved the CI/CD pipeline.</p>
-
-    <h3>Telemetry Pipeline</h3>
-    <p>Built a secondary, throttled data pipeline that exports robot data as MCAP files for real-time visualization, throttled deliberately to avoid impacting the control or video streams running over the primary WebRTC channel.</p>
 
     <h3>Cross-Platform Validation</h3>
     <p>Tested the agent on multiple physical robotic platforms across different ROS SDKs, Unitree, Slamtec, Bracket Bot, Viam Rover, surfacing and resolving platform-specific integration issues.</p>
